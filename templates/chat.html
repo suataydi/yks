@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sohbet Odası</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <h2>Hoş Geldiniz, <span>{{ username }}</span></h2>
+        <a href="{{ url_for('logout') }}">Çıkış Yap</a>
+        <div id="messages">
+            {% for msg in messages %}
+                <p><b>{{ msg.username }}:</b> {{ msg.text }}</p>
+            {% endfor %}
+        </div>
+        <form method="post">
+            <input type="text" name="message" required placeholder="Mesajınızı yazın">
+            <button type="submit">Gönder</button>
+        </form>
+    </div>
+</body>
+</html>
