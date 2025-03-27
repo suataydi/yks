@@ -1,4 +1,5 @@
-// Kullanıcı ve bot mesajlarını saklamak için basit bir yapı
+const socket = io("http://localhost:5000");
+
 const chatBox = document.getElementById('chat-box');
 const messageInput = document.getElementById('message-input');
 
@@ -7,21 +8,14 @@ function sendMessage() {
     const message = messageInput.value;
     if (message.trim() !== "") {
         // Kullanıcı mesajı
+        socket.emit("send_message", message);
         appendMessage(message, 'user-message');
-
-        // Bot yanıtı
-        setTimeout(() => {
-            const botResponse = "Bot: " + generateBotResponse(message);
-            appendMessage(botResponse, 'bot-message');
-        }, 1000);
     }
-
-    // Mesaj kutusunu temizle
-    messageInput.value = '';
+    messageInput.value = ''; // Mesaj kutusunu temizle
     chatBox.scrollTop = chatBox.scrollHeight; // En son mesaja kaydır
 }
 
-// Mesajı chatbox'a ekleyen fonksiyon
+// Sohbete yeni bir mesaj ekleme
 function appendMessage(message, className) {
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', className);
@@ -29,13 +23,7 @@ function appendMessage(message, className) {
     chatBox.appendChild(messageElement);
 }
 
-// Basit bir bot yanıtı oluşturma fonksiyonu
-function generateBotResponse(userMessage) {
-    if (userMessage.toLowerCase().includes("merhaba")) {
-        return "Merhaba, size nasıl yardımcı olabilirim?";
-    } else if (userMessage.toLowerCase().includes("nasılsın")) {
-        return "Ben bir botum, ama iyi sayılırım!";
-    } else {
-        return "Bunu anlayamadım, tekrar deneyin.";
-    }
-}
+// Sunucudan gelen mesajı dinleme
+socket.on("receive_message", (message) => {
+    appendMessage(message, 'other-user-message');
+});
