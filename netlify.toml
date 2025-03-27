@@ -1,6 +1,0 @@
-[build]
-  functions = "functions"  # Netlify Functions dizini
-  publish = "static"  # Statik dosyalar dizini
-
-[dev]
-  functions = "functions"  # Netlify local geliştirme ortamı için
