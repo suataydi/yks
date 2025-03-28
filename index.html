@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="s.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comics - Sugut</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: #121212;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.9);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .logo h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .search-container {
+      text-align: center;
+      margin: 30px auto;
+      width: 60%;
+    }
+    .search-container input {
+      width: 70%;
+      padding: 14px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      outline: none;
+      background: #1e1e1e;
+      color: white;
+      text-align: center;
+    }
+    .search-container button {
+      padding: 14px 20px;
+      font-size: 1rem;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-left: 10px;
+    }
+    .search-container button:hover {
+      background-color: #ff4b3a;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      position: relative;
+      width: 300px;
+      height: 450px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+      transition: 0.3s;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .card:hover {
+      transform: scale(1.07);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.9);
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Sugut</h1>
+    </div>
+  </header>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search Comics...">
+    <button id="searchBtn">Search</button>
+  </div>
+  <main>
+    <section class="card-container">
+      <div class="card">
+          <a href="mandalorian.html">
+              <img src="https://2.bp.blogspot.com/PUzvJE43UCBY93kEy_iIcFX91RWF2qswDiApOG_ejMQwvwnirE_5dD36tcND-v3BDhROB_5Ox5fLp8NsYhB_b865YOcdHE0qwIB-1wLmu60ouqCtCo-6zzn7_p-9NTwjLxD9gGTuEA=s0" alt="Mandalorian Comic">
+          </a>
+      </div>
+      <div class="card">
+          <a href="mandalorian2.html">
+              <img src="https://2.bp.blogspot.com/lSG6Qlz0F4auN5QU1SlCjx3GaeOOTBUKF2FjySJGZu_Asm9yJuJalVCe3RxbXjgAB4W5fwMrjkzaMwSu5KIQHRVhUmnJYmOlgeslPLSWeAb3b2TKXgP8O8Ox67WwXWsStbP7s46G0w=s0" alt="Mandalorian Comic">
+          </a>
+      </div>
+  </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 All Rights Reserved.</p>
+  </footer>
+  
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', function() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      
+      cards.forEach(card => {
+        const title = card.querySelector('img').alt.toLowerCase();
+        card.style.display = title.includes(searchTerm) ? "block" : "none";
+      });
+    });
+  </script>
+  
+  <script>
+    var api = "633cbc606bc76f0042f1dc1eaf3dc61d2f5f13bf";
+    var ct = "0";
+  </script>
+  
+  <script src="//aylink.co/t89s3.js" defer></script>
+  
+</body>
+</html>
