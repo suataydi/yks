@@ -321,6 +321,24 @@
   </div>
 
   <script>
+    function showSection(sectionId) {
+      // Tüm bölümleri gizle
+      var sections = document.querySelectorAll(".section");
+      sections.forEach(function (section) {
+        section.classList.remove("active");
+      });
+  
+      // Seçilen bölümü göster
+      var activeSection = document.getElementById(sectionId);
+      activeSection.classList.add("active");
+  
+      // Sayfanın en üstüne kaydır
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Yumuşak kaydırma efekti
+      });
+    }
+
     function showSection(id) {
       document.querySelectorAll(".section").forEach((section) => {
         section.classList.remove("active");
