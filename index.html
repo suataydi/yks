@@ -23,7 +23,6 @@
       margin: 0;
       padding: 0;
       color: white;
-      backdrop-filter: blur(8px);
     }
     header {
       display: flex;
@@ -61,12 +60,13 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background 0.3s;
       margin-left: 10px;
     }
     .search-container button:hover {
       background-color: #ff4b3a;
     }
+    /* Grid yapı ve kart düzenlemeleri */
     .card-container {
       display: flex;
       flex-wrap: wrap;
@@ -75,24 +75,55 @@
       padding: 20px;
     }
     .card {
-      position: relative;
-      width: 300px;
-      height: 450px;
-      overflow: hidden;
-      border-radius: 15px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-      transition: 0.3s;
-      border: 2px solid rgba(255, 255, 255, 0.2);
       background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .card:hover {
-      transform: scale(1.07);
-      border-color: rgba(255, 255, 255, 0.5);
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
     }
-    .card img {
+    /* Resim alanı: 200px x 200px */
+    .img-container {
+      width: 200px;
+      height: 200px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .img-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+    }
+    /* Özet kısmı */
+    .card .summary {
+      padding: 15px;
+      font-size: 1rem;
+      line-height: 1.5;
+      background: rgba(0, 0, 0, 0.85);
+      color: #f0f0f0;
+      text-align: left;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      width: 100%;
+      box-sizing: border-box;
+      min-height: 80px;
+      font-weight: 500;
+    }
+    .card a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
     footer {
       text-align: center;
@@ -115,21 +146,16 @@
   <main>
     <section class="card-container">
       <div class="card">
-          <a href="Mandalorian.html">
-              <img src="https://2.bp.blogspot.com/PUzvJE43UCBY93kEy_iIcFX91RWF2qswDiApOG_ejMQwvwnirE_5dD36tcND-v3BDhROB_5Ox5fLp8NsYhB_b865YOcdHE0qwIB-1wLmu60ouqCtCo-6zzn7_p-9NTwjLxD9gGTuEA=s0" alt="Mandalorian Comic">
-          </a>
+        <a href="PulseForge.html">
+          <div class="img-container">
+            <img src="arka_plan_PulseForge.jpg" alt="PulseForge">
+          </div>
+          <div class="summary">
+            ⚡ John Parker, kinetik enerjiyi manipüle edebilen genç bir kahramandır. Güçlerini kontrol etmeyi öğrenirken büyük bir tehditle karşı karşıya kalır.
+          </div>
+        </a>
       </div>
-      <div class="card">
-          <a href="Mandalorian2.html">
-              <img src="https://2.bp.blogspot.com/lSG6Qlz0F4auN5QU1SlCjx3GaeOOTBUKF2FjySJGZu_Asm9yJuJalVCe3RxbXjgAB4W5fwMrjkzaMwSu5KIQHRVhUmnJYmOlgeslPLSWeAb3b2TKXgP8O8Ox67WwXWsStbP7s46G0w=s0" alt="Mandalorian Comic">
-          </a>
-      </div>
-      <div class="card">
-          <a href="PulseForge.html">
-              <img src="arka_plan_PulseForge.jpg" alt="PulseForge">
-          </a>
-      </div>
-  </section>
+    </section>
   </main>
   <footer>
     <p>&copy; 2025 All Rights Reserved.</p>
@@ -141,8 +167,8 @@
       const cards = document.querySelectorAll('.card');
       
       cards.forEach(card => {
-        const title = card.querySelector('img').alt.toLowerCase();
-        card.style.display = title.includes(searchTerm) ? "block" : "none";
+        const title = card.querySelector('.img-container img').alt.toLowerCase();
+        card.style.display = title.includes(searchTerm) ? "flex" : "none";
       });
     });
   </script>
