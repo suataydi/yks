@@ -49,6 +49,7 @@
     }
 
     body {
+      padding-top: 80px; /* Header'ın yüksekliğine göre ayarla */
       font-family: "Montserrat", sans-serif;
       background: url("arka_plan_PulseForge.jpg") no-repeat center center fixed;
       background-size: cover;
@@ -339,37 +340,7 @@
       });
     }
 
-    function showSection(id) {
-      document.querySelectorAll(".section").forEach((section) => {
-        section.classList.remove("active");
-      });
-      document.getElementById(id).classList.add("active");
 
-      let current;
-      switch (id) {
-        case "bolum1":
-          current = 1;
-          break;
-        case "bolum2":
-          current = 2;
-          break;
-        case "bolum3":
-          current = 3;
-          break;
-        case "bolum4":
-          current = 4;
-          break;
-        case "bolum5":
-          current = 5;
-          break;
-        case "bolum6":
-          current = 6;
-          break;
-        default:
-          current = 1;
-      }
-      document.getElementById("currentSection").textContent = current;
-    }
   </script>
 </body>
 </html>
