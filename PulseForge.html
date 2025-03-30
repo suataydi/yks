@@ -187,13 +187,18 @@
       color: #ccc;
     }
 
-  @media (max-width: 768px) {
-    body {
-      background-image: url('mobil-arka-plan.jpg'); /* Mobil cihazlar için farklı arka plan */
-      background-size: cover; /* Arka planın mobilde de ekranı kaplaması */
-      background-position: center center; /* Yine ortalanır */
+    @media (max-width: 600px) {
+      header .logo h1 {
+        font-size: 1.8rem;
+      }
+      .container {
+        margin: 120px 20px;
+        padding: 20px;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
     }
-  }
   </style>
 </head>
 <body>
