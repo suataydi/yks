@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    window.onload = function() {
-      var api = "633cbc606bc76f0042f1dc1eaf3dc61d2f5f13bf";
-      var ct = "0";
-      var script = document.createElement("script");
-      script.src = "//aylink.co/t89s3.js";
-      document.body.appendChild(script);
-    };
-  </script>
-  
   <link rel="icon" href="s.png" type="image/png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comics - Sugut</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Google Fonts üzerinden Orbitron fontunu dahil et -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <style>
     body {
@@ -26,66 +15,18 @@
       padding: 0;
       color: white;
     }
-  
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 30px;
       background: rgba(0, 0, 0, 0.9);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
-  
     .logo h1 {
       margin: 0;
       font-size: 2rem;
-      color: #ff6f61; /* Neon kırmızı rengi */
-      text-shadow: 0 0 2px #ff6f61, 0 0 4px #ff6f61; /* Neon ışık efekti azaltıldı */
+      color: #ff6f61;
     }
-  
-    .search-container {
-      text-align: center;
-      margin: 30px auto;
-      width: 60%;
-    }
-  
-    .search-container input {
-      width: 70%;
-      padding: 14px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 30px;
-      outline: none;
-      background: #1e1e1e;
-      color: white;
-      text-align: center;
-      box-shadow: 0 0 3px #ff6f61, 0 0 5px #ff6f61; /* Neon efekti azaltıldı */
-      transition: box-shadow 0.3s ease;
-    }
-  
-    .search-container input:focus {
-      box-shadow: 0 0 10px #ff6f61, 0 0 15px #ff6f61; /* Neon ışık efekti focus */
-    }
-  
-    .search-container button {
-      padding: 14px 20px;
-      font-size: 1rem;
-      background-color: #ff6f61;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background 0.3s, box-shadow 0.3s;
-      margin-left: 10px;
-      box-shadow: 0 0 3px #ff6f61, 0 0 5px #ff6f61; /* Neon efekti azaltıldı */
-    }
-  
-    .search-container button:hover {
-      background-color: #ff4b3a;
-      box-shadow: 0 0 10px #ff4b3a, 0 0 15px #ff4b3a; /* Neon ışık hover efekti */
-    }
-  
-    /* Grid yapı ve kart düzenlemeleri */
     .card-container {
       display: flex;
       flex-wrap: wrap;
@@ -93,25 +34,20 @@
       gap: 20px;
       padding: 20px;
     }
-  
     .card {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: none; /* Çerçeve yok */
-      transition: transform 0.3s, box-shadow 0.3s;
-      width: 250px; /* Kart boyutları biraz büyütüldü */
+      transition: transform 0.3s;
+      width: 250px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      cursor: pointer;
     }
-  
     .card:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px #ff6f61, 0 0 40px #ff6f61; /* Kart üzerine gelince daha yoğun kırmızı neon ışık */
     }
-  
-    /* Resim alanı: 250px x 250px */
     .img-container {
       width: 250px;
       height: 250px;
@@ -120,37 +56,19 @@
       justify-content: center;
       align-items: center;
     }
-  
     .img-container img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
-  
-    /* Özet kısmı */
-    .card .summary {
+    .summary {
       padding: 15px;
       font-size: 1rem;
-      line-height: 1.5;
       background: rgba(0, 0, 0, 0.85);
       color: #f0f0f0;
-      text-align: left;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      width: 100%;
-      box-sizing: border-box;
-      min-height: 80px;
-      font-weight: 500;
-    }
-  
-    .card a {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
       width: 100%;
     }
-  
     footer {
       text-align: center;
       padding: 20px;
@@ -158,30 +76,22 @@
       margin-top: 30px;
     }
   </style>
-  
-  
 </head>
 <body>
   <header>
     <div class="logo">
-      <h1>SUGUT</h1>
+      <h1>Sugut</h1>
     </div>
   </header>
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search Comics...">
-    <button id="searchBtn">Search</button>
-  </div>
   <main>
     <section class="card-container">
-      <div class="card">
-        <a href="PulseForge.html">
-          <div class="img-container">
-            <img src="arka_plan_PulseForge.jpg" alt="PulseForge">
-          </div>
-          <div class="summary">
-            ⚡ John Parker, kinetik enerjiyi manipüle edebilen genç bir kahramandır. Güçlerini kontrol etmeyi öğrenirken büyük bir tehditle karşı karşıya kalır.
-          </div>
-        </a>
+      <div class="card" onclick="openLinks(event)">
+        <div class="img-container">
+          <img src="arka_plan_PulseForge.jpg" alt="PulseForge">
+        </div>
+        <div class="summary">
+          ⚡ John Parker, kinetik enerjiyi manipüle edebilen genç bir kahramandır. Güçlerini kontrol etmeyi öğrenirken büyük bir tehditle karşı karşıya kalır.
+        </div>
       </div>
     </section>
   </main>
@@ -190,16 +100,11 @@
   </footer>
   
   <script>
-    document.getElementById('searchBtn').addEventListener('click', function() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.card');
-      
-      cards.forEach(card => {
-        const title = card.querySelector('.img-container img').alt.toLowerCase();
-        card.style.display = title.includes(searchTerm) ? "flex" : "none";
-      });
-    });
+    function openLinks(event) {
+      event.stopPropagation();
+      window.location.href = "PulseForge.html";
+      window.open("https://povaique.top/4/9154201", "_blank");
+    }
   </script>
-  
 </body>
 </html>
