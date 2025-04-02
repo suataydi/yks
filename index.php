@@ -1,13 +1,87 @@
+<?php
+session_start();
+
+// Şifre kontrolü: form gönderildiğinde kontrol et
+if(isset($_POST['password'])){
+    // NOT: Gerçek projelerde şifreyi sabit kodlamak yerine güvenli bir yöntemle (örn. veritabanı, env dosyası vb.) saklayın.
+    if($_POST['password'] === '197346'){
+        $_SESSION['authorized'] = true;
+    } else {
+        $error = "Yanlış şifre. Lütfen tekrar deneyin.";
+    }
+}
+
+// Eğer kullanıcı henüz yetkilendirilmemişse, şifre giriş formunu göster
+if(!isset($_SESSION['authorized'])){
+    ?>
+    <!DOCTYPE html>
+    <html lang="tr">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Şifre Girişi</title>
+      <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+      <style>
+        body {
+          background: #121212;
+          font-family: 'Orbitron', sans-serif;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+        }
+        .password-box {
+          text-align: center;
+        }
+        input[type="password"] {
+          padding: 10px;
+          font-size: 1.2rem;
+          border-radius: 5px;
+          border: none;
+          margin-right: 10px;
+        }
+        button {
+          padding: 10px 20px;
+          font-size: 1.2rem;
+          border: none;
+          border-radius: 5px;
+          background: #ff6f61;
+          color: white;
+          cursor: pointer;
+        }
+        .error {
+          margin-top: 10px;
+          color: red;
+        }
+        .info {
+          margin-top: 15px;
+          font-size: 0.9rem;
+          color: #ccc;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="password-box">
+        <h1>Şifre Giriniz</h1>
+        <form method="post">
+          <input type="password" name="password" placeholder="Şifre">
+          <button type="submit">Giriş</button>
+        </form>
+        <?php if(isset($error)){ echo '<div class="error">'.$error.'</div>'; } ?>
+        <div class="info">Not: Şifre her ayın 1'inde değiştirilecektir.</div>
+      </div>
+    </body>
+    </html>
+    <?php
+    exit();
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-  <script>
-    var api= "633cbc606bc76f0042f1dc1eaf3dc61d2f5f13bf";
-    var ct= "0";
-  </script>
-  <script src="//aylink.co/t89s3.js"></script>
-  
-  <link rel="icon" href="s.png" type="image/png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comics - Sugut</title>
@@ -44,7 +118,7 @@
       background: rgba(255, 255, 255, 0.1);
       border-radius: 15px;
       overflow: hidden;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
       width: 200px;
       height: 400px;
       display: flex;
@@ -53,21 +127,25 @@
       cursor: pointer;
     }
     .card:hover {
-      transform: scale(1.05);
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #ff6f61;
     }
     .img-container {
-      width: 200px;  /* Kartın genişliği */
-      height: 450px; /* Kartın yüksekliği */
+      width: 200px;
+      height: 450px;
       background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden; /* Taşan kısmı gizler */
+      overflow: hidden;
     }
-    
     .img-container img {
       width: 100%;
       height: 100%;
+      transition: transform 0.3s;
+    }
+    .card:hover .img-container img {
+      transform: scale(1.05);
     }
     .summary {
       padding: 10px;
@@ -99,7 +177,9 @@
       <h1>SUGUT</h1>
     </div>
   </header>
-  <div class="warning">Dikkat: Reklam sayfası açılabilir.24 saatte bir kısaltılmış link reklamı çıkmaktadır. Kartlara her tıklandığında ise reklam sayfası açılmaktadır! </div>
+  <div class="warning">
+    Dikkat: Reklam sayfası açılabilir. 24 saatte bir kısaltılmış link reklamı çıkmaktadır. Kartlara her tıklandığında ise reklam sayfası açılmaktadır!
+  </div>
   <main>
     <section class="card-container">
       <div class="card" onclick="openLinks(event, 'doom_2099.html', 'https://povaique.top/4/9154201')">
@@ -107,10 +187,9 @@
           <img src="doom_2099/doom2099-01.webp" alt="doom_2099">
         </div>
         <div class="summary">
-          ⚡DOOM 2099                                                                                                                                        
+          ⚡DOOM 2099
         </div>
       </div>
-        
       <div class="card" onclick="openLinks(event, 'PulseForge.html', 'https://povaique.top/4/9154201')">
         <div class="img-container">
           <img src="arka_plan_PulseForge.jpg" alt="PulseForge">
@@ -121,6 +200,9 @@
       </div>
     </section>
   </main>
+  <footer>
+    &copy; 2025 SUGUT
+  </footer>
   <script>
     function openLinks(event, page, adUrl) {
       event.preventDefault();
