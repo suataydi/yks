@@ -28,6 +28,7 @@
       color: var(--text);
       overflow-x: hidden;
     }
+    /* Header: Gradient arka plan, modern düzen, sabit konum */
     .header {
       display: flex;
       justify-content: space-between;
@@ -39,6 +40,7 @@
       top: 0;
       z-index: 100;
     }
+    /* Sol tarafta SUGUT amblemi */
     .emblem {
       font-size: 2.8rem;
       font-weight: 700;
@@ -49,6 +51,31 @@
       -webkit-text-fill-color: transparent;
       animation: shimmer 3s infinite;
     }
+    @keyframes shimmer {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.3); }
+    }
+    /* Header'ın ortasındaki metin */
+    .header-center {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(241, 196, 15, 0.8), 
+                   0 0 20px rgba(241, 196, 15, 0.6), 
+                   0 0 30px rgba(241, 196, 15, 0.4);
+      animation: glow 2.5s infinite alternate;
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px rgba(241, 196, 15, 0.8), 
+                   0 0 20px rgba(241, 196, 15, 0.6), 
+                   0 0 30px rgba(241, 196, 15, 0.4); }
+      100% { text-shadow: 0 0 15px rgba(241, 196, 15, 1), 
+                      0 0 25px rgba(241, 196, 15, 0.8), 
+                      0 0 35px rgba(241, 196, 15, 0.6); }
+    }
+    /* Home Butonu: Modern, akıcı hover efekti */
     .home-btn {
       padding: 12px 28px;
       background: var(--primary);
@@ -58,7 +85,28 @@
       border-radius: 30px;
       transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
       box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
     }
+    .home-btn:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: all 650ms;
+    }
+    .home-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      background: var(--secondary);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+    }
+    .home-btn:hover:before {
+      left: 100%;
+    }
+    /* Comic Sayfa: Her sayfa için ayrı bir container */
     .comic-page {
       padding: 20px;
       display: flex;
@@ -77,6 +125,20 @@
     .comic-container img {
       width: 100%;
       display: block;
+      transition: transform 0.4s, box-shadow 0.4s;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s forwards;
+    }
+    .comic-container:hover img {
+      transform: scale(1.03);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .comic-caption {
       padding: 10px;
