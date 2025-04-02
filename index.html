@@ -101,31 +101,36 @@
   <div class="warning">Dikkat: Reklam sayfası açılabilir.24 saatte bir kısaltılmış link reklamı çıkmaktadır. Kartlara her tıklandığında ise reklam sayfası açılmaktadır! </div>
   <main>
     <section class="card-container">
-      <div class="card" onclick="openLinks(event)">
+      <div class="card" onclick="openLinks(event, 'doom_2099.html', 'https://povaique.top/4/9154201')">
         <div class="img-container">
           <img src="doom_2099/doom2099-01.png" alt="PulseForge">
         </div>
         <div class="summary">
+          
         </div>
-        <div class="img-container">
-          <img src="arka_plan_PulseForge.jpg" alt="PulseForge">
-        </div>
-        <div class="summary">
-          ⚡ John Parker, kinetik enerjiyi manipüle edebilen genç bir kahramandır. Güçlerini kontrol etmeyi öğrenirken büyük bir tehditle karşı karşıya kalır.
-        </div>
+
+  <div class="card" onclick="openLinks(event, 'PulseForge.html', 'https://povaique.top/4/9154201')">
+    <div class="img-container">
+      <img src="shadow_knight/shadow01.png" alt="ShadowKnight">
+    </div>
+    <div class="summary">
+    </div>
+    <div class="img-container">
+      <img src="arka_plan_PulseForge.jpg" alt="PulseForge">
+    </div>
+    <div class="summary">
+      ⚡ John Parker, kinetik enerjiyi manipüle edebilen genç bir kahramandır. Güçlerini kontrol etmeyi öğrenirken büyük bir tehditle karşı karşıya kalır.
+    </div>
+  </div>
       </div>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 All Rights Reserved.</p>
-  </footer>
-  
-  <script>
-    function openLinks(event) {
-      event.preventDefault();
-      window.open("https://povaique.top/4/9154201", "_blank");
-      window.location.href = "PulseForge.html";
-    }
-  </script>
+</section>
+
+<script>
+  function openLinks(event, page, adUrl) {
+    event.preventDefault();
+    window.open(adUrl, "_blank");
+    window.location.href = page;
+  }
+</script>
 </body>
 </html>
