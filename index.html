@@ -1,84 +1,3 @@
-<?php
-session_start();
-
-// Şifre kontrolü: form gönderildiğinde kontrol et
-if(isset($_POST['password'])){
-    // NOT: Gerçek projelerde şifreyi sabit kodlamak yerine güvenli bir yöntemle (örn. veritabanı, env dosyası vb.) saklayın.
-    if($_POST['password'] === '197346'){
-        $_SESSION['authorized'] = true;
-    } else {
-        $error = "Yanlış şifre. Lütfen tekrar deneyin.";
-    }
-}
-
-// Eğer kullanıcı henüz yetkilendirilmemişse, şifre giriş formunu göster
-if(!isset($_SESSION['authorized'])){
-    ?>
-    <!DOCTYPE html>
-    <html lang="tr">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Şifre Girişi</title>
-      <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-      <style>
-        body {
-          background: #121212;
-          font-family: 'Orbitron', sans-serif;
-          color: white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          margin: 0;
-        }
-        .password-box {
-          text-align: center;
-        }
-        input[type="password"] {
-          padding: 10px;
-          font-size: 1.2rem;
-          border-radius: 5px;
-          border: none;
-          margin-right: 10px;
-        }
-        button {
-          padding: 10px 20px;
-          font-size: 1.2rem;
-          border: none;
-          border-radius: 5px;
-          background: #ff6f61;
-          color: white;
-          cursor: pointer;
-        }
-        .error {
-          margin-top: 10px;
-          color: red;
-        }
-        .info {
-          margin-top: 15px;
-          font-size: 0.9rem;
-          color: #ccc;
-        }
-      </style>
-    </head>
-    <body>
-      <div class="password-box">
-        <h1>Şifre Giriniz</h1>
-        <form method="post">
-          <input type="password" name="password" placeholder="Şifre">
-          <button type="submit">Giriş</button>
-        </form>
-        <?php if(isset($error)){ echo '<div class="error">'.$error.'</div>'; } ?>
-        <div class="info">Not: Şifre her ayın 1'inde değiştirilecektir.</div>
-      </div>
-    </body>
-    </html>
-    <?php
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -94,6 +13,82 @@ if(!isset($_SESSION['authorized'])){
       margin: 0;
       padding: 0;
       color: white;
+    }
+    /* Parola giriş ekranı için stil ve animasyonlar */
+    #passwordOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #121212;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 1s;
+    }
+    #passwordOverlay.fadeOut {
+      animation: fadeOut 1s forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; visibility: hidden; }
+    }
+    /* Shake animasyonu yanlış şifre durumunda */
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-10px); }
+      100% { transform: translateX(0); }
+    }
+    #passwordOverlay.shake {
+      animation: shake 0.5s;
+    }
+    #passwordOverlay h1 {
+      margin-bottom: 20px;
+    }
+    #passwordOverlay input[type="password"] {
+      padding: 10px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+      outline: none;
+      transition: box-shadow 0.3s;
+    }
+    #passwordOverlay input[type="password"]:focus {
+      box-shadow: 0 0 10px #ff6f61;
+    }
+    #passwordOverlay button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      background: #ff6f61;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    #passwordOverlay button:hover {
+      background: #e65a50;
+      transform: scale(1.05);
+    }
+    #passwordOverlay .error {
+      color: red;
+      margin-top: 10px;
+      display: none;
+    }
+    #passwordOverlay .info {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #ccc;
     }
     header {
       display: flex;
@@ -172,6 +167,17 @@ if(!isset($_SESSION['authorized'])){
   </style>
 </head>
 <body>
+  <!-- Parola Giriş Ekranı -->
+  <div id="passwordOverlay">
+    <h1>Şifre Giriniz</h1>
+    <div>
+      <input type="password" id="passwordInput" placeholder="Şifre">
+      <button onclick="checkPassword()">Giriş</button>
+    </div>
+    <div class="error" id="errorMsg">Yanlış şifre. Lütfen tekrar deneyin.</div>
+    <div class="info">Not: Şifre her ayın 1'inde değiştirilecektir.</div>
+  </div>
+
   <header>
     <div class="logo">
       <h1>SUGUT</h1>
@@ -204,6 +210,27 @@ if(!isset($_SESSION['authorized'])){
     &copy; 2025 SUGUT
   </footer>
   <script>
+    function checkPassword() {
+      var userInput = document.getElementById("passwordInput").value;
+      var overlay = document.getElementById("passwordOverlay");
+      var errorMsg = document.getElementById("errorMsg");
+
+      if(userInput === "197346") {
+        overlay.classList.add("fadeOut");
+        // İçeriğin tamamen kaybolması için 1 saniye sonra overlay'i kaldırıyoruz
+        setTimeout(function() {
+          overlay.style.display = "none";
+        }, 1000);
+      } else {
+        errorMsg.style.display = "block";
+        overlay.classList.add("shake");
+        // Shake animasyonunu temizlemek için 0.5 saniye sonra class'ı kaldırıyoruz
+        setTimeout(function() {
+          overlay.classList.remove("shake");
+        }, 500);
+      }
+    }
+    
     function openLinks(event, page, adUrl) {
       event.preventDefault();
       window.open(adUrl, "_blank");
