@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head><script>
-    var api= "633cbc606bc76f0042f1dc1eaf3dc61d2f5f13bf";
-    var ct= "0";
-  </script>
-  <script src="//aylink.co/t89s3.js"></script>
-  
-  <link rel="icon" href="s.png" type="image/png">
+<head>
   <meta charset="UTF-8">
   <title>Doom2099 Comic</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -163,14 +157,9 @@
       container.className = 'comic-container';
       
       let img = document.createElement('img');
-      img.style.animationDelay = `${i * 0.1}s`;
-      img.src = `doom_2099/doom2099-${imgNumber}.png`;
-      img.alt = `Doom2099 Comic Page ${i}`;
-      
-      // İsteğe bağlı: Sayfa numarasını gösteren bir caption ekleyebilirsiniz
-      let caption = document.createElement('div');
-      caption.className = 'comic-caption';
-      caption.textContent = `Page ${i}`;
+      img.style.animationDelay = ${i * 0.1}s;
+      img.src = doom_2099/doom2099-${imgNumber}.jpg;
+      img.alt = Doom2099 Comic Page ${i};
       
       container.appendChild(img);
       container.appendChild(caption);
