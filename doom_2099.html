@@ -28,7 +28,6 @@
       color: var(--text);
       overflow-x: hidden;
     }
-    /* Header: Gradient arka plan, modern düzen, sabit konum */
     .header {
       display: flex;
       justify-content: space-between;
@@ -40,7 +39,6 @@
       top: 0;
       z-index: 100;
     }
-    /* Sol tarafta SUGUT amblemi */
     .emblem {
       font-size: 2.8rem;
       font-weight: 700;
@@ -51,31 +49,6 @@
       -webkit-text-fill-color: transparent;
       animation: shimmer 3s infinite;
     }
-    @keyframes shimmer {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.3); }
-    }
-    /* Header'ın ortasındaki metin */
-    .header-center {
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: var(--primary);
-      text-shadow: 0 0 10px rgba(241, 196, 15, 0.8), 
-                   0 0 20px rgba(241, 196, 15, 0.6), 
-                   0 0 30px rgba(241, 196, 15, 0.4);
-      animation: glow 2.5s infinite alternate;
-    }
-    @keyframes glow {
-      0% { text-shadow: 0 0 10px rgba(241, 196, 15, 0.8), 
-                   0 0 20px rgba(241, 196, 15, 0.6), 
-                   0 0 30px rgba(241, 196, 15, 0.4); }
-      100% { text-shadow: 0 0 15px rgba(241, 196, 15, 1), 
-                      0 0 25px rgba(241, 196, 15, 0.8), 
-                      0 0 35px rgba(241, 196, 15, 0.6); }
-    }
-    /* Home Butonu: Modern, akıcı hover efekti */
     .home-btn {
       padding: 12px 28px;
       background: var(--primary);
@@ -85,28 +58,7 @@
       border-radius: 30px;
       transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
       box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-      position: relative;
-      overflow: hidden;
     }
-    .home-btn:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: all 650ms;
-    }
-    .home-btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      background: var(--secondary);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.6);
-    }
-    .home-btn:hover:before {
-      left: 100%;
-    }
-    /* Comic Sayfa: Her sayfa için ayrı bir container */
     .comic-page {
       padding: 20px;
       display: flex;
@@ -125,20 +77,6 @@
     .comic-container img {
       width: 100%;
       display: block;
-      transition: transform 0.4s, box-shadow 0.4s;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s forwards;
-    }
-    .comic-container:hover img {
-      transform: scale(1.03);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
     .comic-caption {
       padding: 10px;
@@ -155,24 +93,76 @@
     <div class="header-center">Doom2099 Comic Archive</div>
     <a class="home-btn" href="index.html">Home</a>
   </div>
-  <div class="comic-page" id="comic"></div>
-  <script>
-    const comicDiv = document.getElementById('comic');
-    for (let i = 1; i <= 32; i++) {
-      let imgNumber = i.toString().padStart(2, '0');
-      // Her sayfa için ayrı container oluşturuluyor
-      let container = document.createElement('div');
-      container.className = 'comic-container';
-      
-      let img = document.createElement('img');
-      img.style.animationDelay = ${i * 0.1}s;
-      img.src = doom_2099/doom2099-${imgNumber}.jpg;
-      img.alt = Doom2099 Comic Page ${i};
-      
-      container.appendChild(img);
-      container.appendChild(caption);
-      comicDiv.appendChild(container);
-    }
-  </script>
+  <div class="comic-page">
+    <!-- Statik olarak tüm resimleri ekliyoruz -->
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-01.jpg" alt="Doom2099 Comic Page 1">
+      <div class="comic-caption">Page 1</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-02.jpg" alt="Doom2099 Comic Page 2">
+      <div class="comic-caption">Page 2</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-03.jpg" alt="Doom2099 Comic Page 3">
+      <div class="comic-caption">Page 3</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-04.jpg" alt="Doom2099 Comic Page 4">
+      <div class="comic-caption">Page 4</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-05.jpg" alt="Doom2099 Comic Page 5">
+      <div class="comic-caption">Page 5</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-06.jpg" alt="Doom2099 Comic Page 6">
+      <div class="comic-caption">Page 6</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-07.jpg" alt="Doom2099 Comic Page 7">
+      <div class="comic-caption">Page 7</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-08.jpg" alt="Doom2099 Comic Page 8">
+      <div class="comic-caption">Page 8</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-09.jpg" alt="Doom2099 Comic Page 9">
+      <div class="comic-caption">Page 9</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-10.jpg" alt="Doom2099 Comic Page 10">
+      <div class="comic-caption">Page 10</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-11.jpg" alt="Doom2099 Comic Page 11">
+      <div class="comic-caption">Page 11</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-12.jpg" alt="Doom2099 Comic Page 12">
+      <div class="comic-caption">Page 12</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-13.jpg" alt="Doom2099 Comic Page 13">
+      <div class="comic-caption">Page 13</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-14.jpg" alt="Doom2099 Comic Page 14">
+      <div class="comic-caption">Page 14</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-15.jpg" alt="Doom2099 Comic Page 15">
+      <div class="comic-caption">Page 15</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-16.jpg" alt="Doom2099 Comic Page 16">
+      <div class="comic-caption">Page 16</div>
+    </div>
+    <div class="comic-container">
+      <img src="doom_2099/doom2099-32.jpg" alt="Doom2099 Comic Page 32">
+      <div class="comic-caption">Page 32</div>
+    </div>
+  </div>
 </body>
 </html>
