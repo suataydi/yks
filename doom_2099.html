@@ -98,46 +98,34 @@
     .home-btn:hover:before {
       left: 100%;
     }
-    /* Comic Sayfa: Her sayfa için ayrı bir container */
+    /* Comic Sayfa: Resimler alt alta sıralanacak */
     .comic-page {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 0;
+      margin: 0;
+      display: block; /* Alt alta sıralama için */
     }
+
     .comic-container {
-      width: 90%;
-      max-width: 600px;
-      margin: 20px 0;
-      border: 3px solid #333;
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: #1e1e1e;
+      display: block; /* her resim alt alta sıralanacak */
+      width: 100%; /* Her resim ekranın tamamını kaplasın */
+      margin-bottom: 20px; /* Sayfa arasına boşluk */
     }
-    .comic-container img {
-      width: 100%;
+
+    .comic-page img {
+      width: 100%; /* Ekran genişliğine sığdır */
+      height: auto; /* Yüksekliği orantılı şekilde ayarla */
       display: block;
       transition: transform 0.4s, box-shadow 0.4s;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeInUp 0.8s forwards;
     }
-    .comic-container:hover img {
-      transform: scale(1.03);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-    }
+
     @keyframes fadeInUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
-    }
-    .comic-caption {
-      padding: 10px;
-      text-align: center;
-      background: #333;
-      color: var(--text);
-      font-size: 1rem;
     }
   </style>
 </head>
@@ -148,29 +136,25 @@
     <a class="home-btn" href="index.html">Home</a>
   </div>
   <div class="comic-page" id="comic"></div>
+
   <script>
     const comicDiv = document.getElementById('comic');
     for (let i = 1; i <= 32; i++) {
       let imgNumber = i.toString().padStart(2, '0');
-      // Her sayfa için ayrı container oluşturuluyor
-      let container = document.createElement('div');
-      container.className = 'comic-container';
       
       let img = document.createElement('img');
       img.style.animationDelay = `${i * 0.1}s`;
       img.src = `doom_2099/doom2099-${imgNumber}.webp`;
       img.alt = `Doom2099 Comic Page ${i}`;
       
-      // İsteğe bağlı: Sayfa numarasını gösteren bir caption ekleyebilirsiniz
-      let caption = document.createElement('div');
-      caption.className = 'comic-caption';
-      caption.textContent = `Page ${i}`;
-      
+      let container = document.createElement('div');
+      container.className = 'comic-container';
       container.appendChild(img);
-      container.appendChild(caption);
+
       comicDiv.appendChild(container);
     }
   </script>
+
   <script>
     document.addEventListener("contextmenu", function (event) {
         event.preventDefault();
@@ -181,8 +165,8 @@
             event.preventDefault();
         }
     });
-    </script>
-    <script>
+  </script>
+  <script>
     document.addEventListener("keydown", function (event) {
         if (event.key === "F12") {
             event.preventDefault();
@@ -200,8 +184,8 @@
         });
         console.log('%c', element);
     })();
-    </script>
-    <script>
+  </script>
+  <script>
     (function() {
       var devtools = false;
       var element = new Image();
@@ -214,20 +198,20 @@
         });
         console.log('%c', element);
       })();
-      </script>
-    <script>
-      if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-          document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
-          setTimeout(function(){ window.location.href = "about:blank"; }, 2000);
-      }
-      </script>
-    <script>
-      setInterval(function() {
-          if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-              alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
-              window.location.href = "about:blank";
-          }
-      }, 1000);
-      </script>
+  </script>
+  <script>
+    if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+        document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
+        setTimeout(function(){ window.location.href = "about:blank"; }, 2000);
+    }
+  </script>
+  <script>
+    setInterval(function() {
+        if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+            alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
+            window.location.href = "about:blank";
+        }
+    }, 1000);
+  </script>
 </body>
 </html>
