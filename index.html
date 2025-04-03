@@ -292,13 +292,17 @@
       }
       }
       </script>
-    <script>
-      setInterval(function() {
+    <script>,
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    // iOS cihazlarda bu kontrolü atl} 
+        else {
+        setInterval(function() {
           if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-              alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
-              window.location.href = "about:blank";
+            alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
+            window.location.href = "about:blank";
           }
-      }, 1000);
+        }, 1000);
+      }
       </script>
 </body>
 </html>
