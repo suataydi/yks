@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
-    header("Location: login.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -112,11 +105,13 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
       margin: 0;
       display: block; /* Alt alta sıralama için */
     }
+
     .comic-container {
       display: block; /* her resim alt alta sıralanacak */
       width: 100%; /* Her resim ekranın tamamını kaplasın */
       margin-bottom: 20px; /* Sayfa arasına boşluk */
     }
+
     .comic-page img {
       width: 100%; /* Ekran genişliğine sığdır */
       height: auto; /* Yüksekliği orantılı şekilde ayarla */
@@ -126,6 +121,7 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
       transform: translateY(30px);
       animation: fadeInUp 0.8s forwards;
     }
+
     @keyframes fadeInUp {
       to {
         opacity: 1;
@@ -138,8 +134,7 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
   <div class="header">
     <div class="emblem">SUGUT</div>
     <div class="header-center">Spider Verse #1</div>
-    <!-- Home butonunun yanında isteğe bağlı çıkış (logout) linki ekleyebilirsiniz -->
-    <a class="home-btn" href="logout.php">Çıkış Yap</a>
+    <a class="home-btn" href="index.html">Home</a>
   </div>
   <div class="comic-page" id="comic"></div>
 
@@ -161,7 +156,6 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
     }
   </script>
 
-  <!-- Geliştirici araçlarını engellemek için eklenen JavaScript kodları -->
   <script>
     document.addEventListener("contextmenu", function (event) {
         event.preventDefault();
@@ -172,13 +166,14 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
             event.preventDefault();
         }
     });
-    
+  </script>
+  <script>
     document.addEventListener("keydown", function (event) {
         if (event.key === "F12") {
             event.preventDefault();
         }
     });
-    
+
     (function() {
         var devtools = false;
         var element = new Image();
@@ -190,7 +185,8 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
         });
         console.log('%c', element);
     })();
-    
+  </script>
+  <script>
     (function() {
       var devtools = false;
       var element = new Image();
@@ -202,13 +198,15 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
           } 
         });
         console.log('%c', element);
-    })();
-    
+      })();
+  </script>
+  <script>
     if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
         document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
         setTimeout(function(){ window.location.href = "about:blank"; }, 2000);
     }
-    
+  </script>
+  <script>
     setInterval(function() {
         if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
             alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
