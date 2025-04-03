@@ -214,5 +214,19 @@
         }
     }, 1000);
   </script>
+  <script src="password.js"></script>
+  <script>
+    function checkPassword() {
+      let userInput = prompt("Bu sayfayı görüntülemek için şifre girin:");
+      if (userInput !== currentPassword) {
+        alert("Hatalı şifre! Erişim reddedildi.");
+        window.location.href = "https://google.com"; // Yanlış girişte yönlendirme
+      }
+    }
+  
+    // Sayfa yüklenirken şifre kontrolü
+    window.onload = checkPassword;
+  </script>
+
 </body>
 </html>
