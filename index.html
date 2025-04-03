@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <link rel="icon" href="s.png" type="image/png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comics - Sugut</title>
@@ -14,7 +15,7 @@
       padding: 0;
       color: white;
     }
-    /* Parola giriş ekranı için stil ve animasyonlar */
+    /* Parola giriş ekranı */
     #passwordOverlay {
       position: fixed;
       top: 0;
@@ -40,7 +41,6 @@
       from { opacity: 1; }
       to { opacity: 0; visibility: hidden; }
     }
-    /* Shake animasyonu yanlış şifre durumunda */
     @keyframes shake {
       0% { transform: translateX(0); }
       25% { transform: translateX(-10px); }
@@ -101,6 +101,23 @@
       margin: 0;
       font-size: 2rem;
       color: #ff6f61;
+    }
+    /* Geliştirilmiş arama kutusu görünümü */
+    .search-bar {
+      position: relative;
+    }
+    .search-bar input {
+      padding: 8px 15px;
+      font-size: 1rem;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      width: 250px;
+      transition: width 0.3s;
+    }
+    .search-bar input:focus {
+      width: 300px;
+      box-shadow: 0 0 10px #ff6f61;
     }
     .card-container {
       display: flex;
@@ -164,6 +181,10 @@
       color: white;
       font-weight: bold;
     }
+    mark {
+      background: yellow;
+      color: black;
+    }
   </style>
 </head>
 <body>
@@ -182,6 +203,10 @@
     <div class="logo">
       <h1>SUGUT</h1>
     </div>
+    <!-- Arama Çubuğu (Butonsuz) -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Ara...">
+    </div>
   </header>
   <div class="warning">
     Dikkat: Reklam sayfası açılabilir. 24 saatte bir kısaltılmış link reklamı çıkmaktadır. Kartlara her tıklandığında ise reklam sayfası açılmaktadır!
@@ -192,17 +217,13 @@
         <div class="img-container">
           <img src="spider-verse/1.webp" alt="spider-verse">
         </div>
-        <div class="summary">
-          ⚡SPİDER VERSE
-        </div>
+        <div class="summary">⚡SPIDER VERSE</div>
       </div>
       <div class="card" onclick="window.location.href='doom_2099.html';">
         <div class="img-container">
           <img src="doom_2099/doom2099-01.webp" alt="doom_2099">
         </div>
-        <div class="summary">
-          ⚡DOOM 2099
-        </div>
+        <div class="summary">⚡DOOM 2099</div>
       </div>
       <div class="card" onclick="window.location.href='PulseForge.html';">
         <div class="img-container">
@@ -218,99 +239,58 @@
     &copy; 2025 SUGUT
   </footer>
   <script>
+    // Parola kontrolü
     function checkPassword() {
       var userInput = document.getElementById("passwordInput").value;
       var overlay = document.getElementById("passwordOverlay");
       var errorMsg = document.getElementById("errorMsg");
 
-      if(userInput === "197346") {
+      if (userInput === "197346") {
         overlay.classList.add("fadeOut");
-        // İçeriğin tamamen kaybolması için 1 saniye sonra overlay'i kaldırıyoruz
         setTimeout(function() {
           overlay.style.display = "none";
         }, 1000);
       } else {
         errorMsg.style.display = "block";
         overlay.classList.add("shake");
-        // Shake animasyonunu temizlemek için 0.5 saniye sonra class'ı kaldırıyoruz
         setTimeout(function() {
           overlay.classList.remove("shake");
         }, 500);
       }
     }
-    
-    function openLinks(event, page, adUrl) {
-      event.preventDefault();
-      window.open(adUrl, "_blank");
-      window.location.href = page;
-    }
-  </script>
-  <script>
-    document.addEventListener("contextmenu", function (event) {
-        event.preventDefault();
-    });
-    
-    document.addEventListener("keydown", function (event) {
-        if (event.ctrlKey && (event.key === "U" || event.key === "S" || event.key === "I" || event.key === "J" || event.key === "C" || event.key === "K")) {
-            event.preventDefault();
-        }
-    });
-    </script>
-    <script>
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "F12") {
-            event.preventDefault();
-        }
+
+    // Sayfa yüklendiğinde, özet metinlerini data attribute olarak kaydet
+    document.addEventListener("DOMContentLoaded", function() {
+      var summaries = document.querySelectorAll(".summary");
+      summaries.forEach(function(summary) {
+        summary.dataset.original = summary.innerText;
+      });
+      // Arama kutusuna anlık filtreleme için input eventi ekle
+      document.getElementById("searchInput").addEventListener("input", searchContent);
     });
 
-    (function() {
-        var devtools = false;
-        var element = new Image();
-        Object.defineProperty(element, 'id', { 
-            get: function() { 
-                devtools = true;
-                window.location.href = "about:blank"; 
-            } 
-        });
-        console.log('%c', element);
-    })();
-    </script>
-    <script>
-    (function() {
-      var devtools = false;
-      var element = new Image();
-      Object.defineProperty(element, 'id', { 
-        get: function() { 
-          devtools = true;
-          alert("Geliştirici araçlarını kapatın!");
-          window.location.href = "about:blank"; 
-          } 
-        });
-        console.log('%c', element);
-      })();
-      </script>
-    <script>
-      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    // iOS cihazlarda bu kontrolü atl} 
-        else {
-        if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-          document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
-          setTimeout(function(){ window.location.href = "about:blank"; }, 2000);
+    // Akıllı arama: kartları filtrele ve bulunan terimleri vurgula
+    function searchContent() {
+      var searchTerm = document.getElementById("searchInput").value.trim();
+      var cards = document.querySelectorAll(".card");
+      var regex = new RegExp(searchTerm, "i"); // büyük/küçük harf duyarsız
+
+      cards.forEach(function(card) {
+        var summaryElem = card.querySelector(".summary");
+        var originalText = summaryElem.dataset.original;
+        if (searchTerm === "") {
+          card.style.display = "flex";
+          summaryElem.innerHTML = originalText;
+        } else if (regex.test(originalText)) {
+          card.style.display = "flex";
+          summaryElem.innerHTML = originalText.replace(regex, function(match) {
+            return "<mark>" + match + "</mark>";
+          });
+        } else {
+          card.style.display = "none";
         }
-      }
-      }
-      </script>
-    <script>,
-      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    // iOS cihazlarda bu kontrolü atl} 
-        else {
-        setInterval(function() {
-          if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-            alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
-            window.location.href = "about:blank";
-          }
-        }, 1000);
-      }
-      </script>
+      });
+    }
+  </script>
 </body>
 </html>
