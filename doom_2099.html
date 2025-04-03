@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <script>
-    var api= "633cbc606bc76f0042f1dc1eaf3dc61d2f5f13bf";
-    var ct= "0";
-  </script>
-  <script src="//aylink.co/t89s3.js"></script>
-  
-  <link rel="icon" href="s.png" type="image/png">
-
   <meta charset="UTF-8">
   <title>Doom2099 Comic</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -155,20 +147,87 @@
     <div class="header-center">Doom2099 Comic Archive</div>
     <a class="home-btn" href="index.html">Home</a>
   </div>
-  <div class="comic-page">
-    <!-- Statik olarak tüm resimleri ekliyoruz -->
-    <div class="comic-container">
-      <script>
-        for (let i = 1; i <= 32; i++) {
-          document.write(`
-            <div class="comic-container">
-              <img src="doom_2099/doom2099-${i.toString().padStart(2, '0')}.webp" alt="Doom2099 Comic Page ${i}">
-              <div class="comic-caption">Page ${i}</div>
-            </div>
-          `);
+  <div class="comic-page" id="comic"></div>
+  <script>
+    const comicDiv = document.getElementById('comic');
+    for (let i = 1; i <= 32; i++) {
+      let imgNumber = i.toString().padStart(2, '0');
+      // Her sayfa için ayrı container oluşturuluyor
+      let container = document.createElement('div');
+      container.className = 'comic-container';
+      
+      let img = document.createElement('img');
+      img.style.animationDelay = `${i * 0.1}s`;
+      img.src = `doom_2099/doom2099-${imgNumber}.png`;
+      img.alt = `Doom2099 Comic Page ${i}`;
+      
+      // İsteğe bağlı: Sayfa numarasını gösteren bir caption ekleyebilirsiniz
+      let caption = document.createElement('div');
+      caption.className = 'comic-caption';
+      caption.textContent = `Page ${i}`;
+      
+      container.appendChild(img);
+      container.appendChild(caption);
+      comicDiv.appendChild(container);
+    }
+  </script>
+  <script>
+    document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+    });
+    
+    document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && (event.key === "U" || event.key === "S" || event.key === "I" || event.key === "J" || event.key === "C" || event.key === "K")) {
+            event.preventDefault();
         }
+    });
+    </script>
+    <script>
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "F12") {
+            event.preventDefault();
+        }
+    });
+
+    (function() {
+        var devtools = false;
+        var element = new Image();
+        Object.defineProperty(element, 'id', { 
+            get: function() { 
+                devtools = true;
+                window.location.href = "about:blank"; 
+            } 
+        });
+        console.log('%c', element);
+    })();
+    </script>
+    <script>
+    (function() {
+      var devtools = false;
+      var element = new Image();
+      Object.defineProperty(element, 'id', { 
+        get: function() { 
+          devtools = true;
+          alert("Geliştirici araçlarını kapatın!");
+          window.location.href = "about:blank"; 
+          } 
+        });
+        console.log('%c', element);
+      })();
       </script>
-    </div>
-  </div>
+    <script>
+      if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+          document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
+          setTimeout(function(){ window.location.href = "about:blank"; }, 2000);
+      }
+      </script>
+    <script>
+      setInterval(function() {
+          if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+              alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
+              window.location.href = "about:blank";
+          }
+      }, 1000);
+      </script>
 </body>
 </html>
