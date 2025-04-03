@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <script src="password.js"></script>
   <link rel="icon" href="s.png" type="image/png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -245,14 +244,18 @@
       var userInput = document.getElementById("passwordInput").value;
       var overlay = document.getElementById("passwordOverlay");
       var errorMsg = document.getElementById("errorMsg");
-      
-      if (userInput === currentPassword) {
+
+      if (userInput === "197346") {
         overlay.classList.add("fadeOut");
-        setTimeout(() => { overlay.style.display = "none"; }, 1000);
+        setTimeout(function() {
+          overlay.style.display = "none";
+        }, 1000);
       } else {
         errorMsg.style.display = "block";
         overlay.classList.add("shake");
-        setTimeout(() => { overlay.classList.remove("shake"); }, 500);
+        setTimeout(function() {
+          overlay.classList.remove("shake");
+        }, 500);
       }
     }
 
