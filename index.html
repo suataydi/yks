@@ -4,7 +4,6 @@
   <link rel="icon" href="s.png" type="image/png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="password.js"></script>
   <title>Comics - Sugut</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
@@ -239,14 +238,15 @@
   <footer>
     &copy; 2025 SUGUT
   </footer>
+  <script src="password.js"></script>
   <script>
     // Parola kontrolü
     function checkPassword() {
       var userInput = document.getElementById("passwordInput").value;
       var overlay = document.getElementById("passwordOverlay");
       var errorMsg = document.getElementById("errorMsg");
-
-      if (typeof currentPassword !== "undefined" && userInput === currentPassword) {
+      
+      if (userInput === currentPassword) {
         overlay.classList.add("fadeOut");
         setTimeout(() => { overlay.style.display = "none"; }, 1000);
       } else {
