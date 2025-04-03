@@ -4,6 +4,7 @@
   <link rel="icon" href="s.png" type="image/png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="password.js"></script>
   <title>Comics - Sugut</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
@@ -245,17 +246,13 @@
       var overlay = document.getElementById("passwordOverlay");
       var errorMsg = document.getElementById("errorMsg");
 
-      if (userInput === "197346") {
+      if (typeof currentPassword !== "undefined" && userInput === currentPassword) {
         overlay.classList.add("fadeOut");
-        setTimeout(function() {
-          overlay.style.display = "none";
-        }, 1000);
+        setTimeout(() => { overlay.style.display = "none"; }, 1000);
       } else {
         errorMsg.style.display = "block";
         overlay.classList.add("shake");
-        setTimeout(function() {
-          overlay.classList.remove("shake");
-        }, 500);
+        setTimeout(() => { overlay.classList.remove("shake"); }, 500);
       }
     }
 
