@@ -1,3 +1,6 @@
+// password.js
+const correctPassword = "197346";
+
 function checkPassword() {
   const userInput = document.getElementById("passwordInput").value;
   const overlay = document.getElementById("passwordOverlay");
