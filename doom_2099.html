@@ -201,24 +201,45 @@
 
   <!-- Geliştirici Araçları Engelleme -->
   <script>
-    document.addEventListener("contextmenu", e => e.preventDefault());
-    document.addEventListener("keydown", e => {
-      if (e.ctrlKey && ["U","S","I","J","C","K"].includes(e.key.toUpperCase()) || e.key === "F12") {
-        e.preventDefault();
-      }
-    });
-    if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-      document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
-      setTimeout(() => window.location.href = "about:blank", 2000);
-    }
-    setInterval(() => {
+    // Mobil cihazlarda bu scripti devre dışı bırak
+    if (window.innerWidth > 800) { // Masaüstü cihazlarda çalışması için
+      document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && (event.key === "U" || event.key === "S" || event.key === "I" || event.key === "J" || event.key === "C" || event.key === "K")) {
+          event.preventDefault();
+        }
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "F12") {
+          event.preventDefault();
+        }
+      });
+      (function() {
+        var devtools = false;
+        var element = new Image();
+        Object.defineProperty(element, 'id', {
+          get: function() {
+            devtools = true;
+            alert("Geliştirici araçlarını kapatın!");
+            window.location.href = "about:blank";
+          }
+        });
+        console.log('%c', element);
+      })();
       if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-        alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
-        window.location.href = "about:blank";
+        document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
+        setTimeout(function(){ window.location.href = "about:blank"; }, 2000);
       }
-    }, 1000);
+      setInterval(function() {
+        if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+          alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
+          window.location.href = "about:blank";
+        }
+      }, 1000);
+    }
   </script>
-  
   <!-- Şifre Kontrolü için dış JS dosyasını dahil ediyoruz -->
   <script src="password.js"></script>
 </body>
