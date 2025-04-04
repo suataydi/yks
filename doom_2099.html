@@ -1,120 +1,149 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <link rel="icon" href="s.png" type="image/png">
   <meta charset="UTF-8">
-  <title>Doom2099 Comic</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doom 2099 | Spider-Verse Stili</title>
+  <link rel="icon" href="s.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #f1c40f;
-      --secondary: #d4ac0d;
+      --primary: #ff6f61;
+      --secondary: #e65a50;
       --bg: #121212;
-      --header-bg: #1e1e1e;
-      --text: #e0e0e0;
+      --header-bg: rgba(0, 0, 0, 0.9);
+      --text: white;
     }
+
     body {
       margin: 0;
       padding: 0;
       background: var(--bg);
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Orbitron', sans-serif;
       color: var(--text);
       overflow-x: hidden;
     }
-    /* Header: Gradient arka plan, modern düzen, sabit konum */
+
+    /* Şifre Overlay */
+    #passwordOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 1s;
+    }
+
+    #passwordOverlay.fadeOut { animation: fadeOut 1s forwards; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
+
+    #passwordOverlay h1 {
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    #passwordOverlay input[type="password"] {
+      padding: 10px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+      outline: none;
+    }
+
+    #passwordOverlay input[type="password"]:focus {
+      box-shadow: 0 0 10px var(--primary);
+    }
+
+    #passwordOverlay button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      background: var(--primary);
+      color: var(--bg);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    #passwordOverlay button:hover {
+      background: var(--secondary);
+      transform: scale(1.05);
+    }
+
+    #errorMsg {
+      color: red;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .info {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Header */
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 30px;
-      background: linear-gradient(135deg, var(--header-bg), #333);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      padding: 15px 30px;
+      background: var(--header-bg);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    /* Sol tarafta SUGUT amblemi */
-    .emblem {
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 3s infinite;
-    }
-    @keyframes shimmer {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.3); }
-    }
-    /* Header'ın ortasındaki metin */
-    .header-center {
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 3px;
+
+    .logo h1 {
+      margin: 0;
+      font-size: 2rem;
       color: var(--primary);
-      text-shadow: 0 0 10px rgba(241, 196, 15, 0.8), 
-                   0 0 20px rgba(241, 196, 15, 0.6), 
-                   0 0 30px rgba(241, 196, 15, 0.4);
-      animation: glow 2.5s infinite alternate;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
-    @keyframes glow {
-      0% { text-shadow: 0 0 10px rgba(241, 196, 15, 0.8), 
-                   0 0 20px rgba(241, 196, 15, 0.6), 
-                   0 0 30px rgba(241, 196, 15, 0.4); }
-      100% { text-shadow: 0 0 15px rgba(241, 196, 15, 1), 
-                      0 0 25px rgba(241, 196, 15, 0.8), 
-                      0 0 35px rgba(241, 196, 15, 0.6); }
+
+    .header-center {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
     }
-    /* Home Butonu: Modern, akıcı hover efekti */
+
     .home-btn {
-      padding: 12px 28px;
+      padding: 10px 20px;
       background: var(--primary);
       color: var(--bg);
       text-decoration: none;
       font-weight: 700;
-      border-radius: 30px;
-      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-      position: relative;
-      overflow: hidden;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
     }
-    .home-btn:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: all 650ms;
-    }
+
     .home-btn:hover {
-      transform: translateY(-3px) scale(1.05);
       background: var(--secondary);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+      transform: scale(1.05);
     }
-    .home-btn:hover:before {
-      left: 100%;
-    }
-    /* Comic Sayfa: Resimler alt alta sıralanacak */
+
+    /* Comic Görselleri */
     .comic-page {
-      padding: 0;
-      margin: 0;
-      display: block; /* Alt alta sıralama için */
+      padding: 20px;
     }
 
     .comic-container {
-      display: block; /* her resim alt alta sıralanacak */
-      width: 100%; /* Her resim ekranın tamamını kaplasın */
-      margin-bottom: 20px; /* Sayfa arasına boşluk */
+      width: 100%;
+      margin-bottom: 20px;
     }
 
     .comic-page img {
-      width: 100%; /* Ekran genişliğine sığdır */
-      height: auto; /* Yüksekliği orantılı şekilde ayarla */
+      width: 100%;
+      height: auto;
       display: block;
       transition: transform 0.4s, box-shadow 0.4s;
       opacity: 0;
@@ -131,88 +160,66 @@
   </style>
 </head>
 <body>
+
+  <!-- Şifre Koruma -->
+  <div id="passwordOverlay">
+    <h1>Şifre Giriniz</h1>
+    <div>
+      <input type="password" id="passwordInput" placeholder="Şifre">
+      <button onclick="checkPassword()">Giriş</button>
+    </div>
+    <div class="error" id="errorMsg">Yanlış şifre. Lütfen tekrar deneyin.</div>
+    <div class="info">Not: Şifre her ayın 1'inde değiştirilecektir.</div>
+  </div>
+
+  <!-- Üst Menü -->
   <div class="header">
-    <div class="emblem">SUGUT</div>
-    <div class="header-center">Doom2099 Comic Archive</div>
+    <div class="logo"><h1>SUGUT</h1></div>
+    <div class="header-center">Doom 2099</div>
     <a class="home-btn" href="index.html">Home</a>
   </div>
+
+  <!-- Comic -->
   <div class="comic-page" id="comic"></div>
 
+  <!-- Comic Görsellerini Yükle -->
   <script>
     const comicDiv = document.getElementById('comic');
     for (let i = 1; i <= 32; i++) {
       let imgNumber = i.toString().padStart(2, '0');
-      
       let img = document.createElement('img');
-      img.style.animationDelay = `${i * 0.1}s`;
       img.src = `doom_2099/doom2099-${imgNumber}.webp`;
       img.alt = `Doom2099 Comic Page ${i}`;
-      
+      img.style.animationDelay = `${i * 0.1}s`;
+
       let container = document.createElement('div');
       container.className = 'comic-container';
       container.appendChild(img);
-
       comicDiv.appendChild(container);
     }
   </script>
 
+  <!-- Geliştirici Araçları Engelleme -->
   <script>
-    document.addEventListener("contextmenu", function (event) {
-        event.preventDefault();
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.addEventListener("keydown", e => {
+      if (e.ctrlKey && ["U","S","I","J","C","K"].includes(e.key.toUpperCase()) || e.key === "F12") {
+        e.preventDefault();
+      }
     });
-    
-    document.addEventListener("keydown", function (event) {
-        if (event.ctrlKey && (event.key === "U" || event.key === "S" || event.key === "I" || event.key === "J" || event.key === "C" || event.key === "K")) {
-            event.preventDefault();
-        }
-    });
-  </script>
-  <script>
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "F12") {
-            event.preventDefault();
-        }
-    });
-
-    (function() {
-        var devtools = false;
-        var element = new Image();
-        Object.defineProperty(element, 'id', { 
-            get: function() { 
-                devtools = true;
-                window.location.href = "about:blank"; 
-            } 
-        });
-        console.log('%c', element);
-    })();
-  </script>
-  <script>
-    (function() {
-      var devtools = false;
-      var element = new Image();
-      Object.defineProperty(element, 'id', { 
-        get: function() { 
-          devtools = true;
-          alert("Geliştirici araçlarını kapatın!");
-          window.location.href = "about:blank"; 
-          } 
-        });
-        console.log('%c', element);
-      })();
-  </script>
-  <script>
     if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-        document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
-        setTimeout(function(){ window.location.href = "about:blank"; }, 2000);
+      document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
+      setTimeout(() => window.location.href = "about:blank", 2000);
     }
-  </script>
-  <script>
-    setInterval(function() {
-        if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-            alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
-            window.location.href = "about:blank";
-        }
+    setInterval(() => {
+      if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+        alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
+        window.location.href = "about:blank";
+      }
     }, 1000);
   </script>
+  
+  <!-- Şifre Kontrolü için dış JS dosyasını dahil ediyoruz -->
+  <script src="password.js"></script>
 </body>
 </html>
