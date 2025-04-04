@@ -1,10 +1,9 @@
-// password.js
-const correctPassword = "197346";
-
 function checkPassword() {
   const userInput = document.getElementById("passwordInput").value;
   const overlay = document.getElementById("passwordOverlay");
   const errorMsg = document.getElementById("errorMsg");
+
+  console.log("Girilen Şifre:", userInput);  // Log ekleyelim
 
   if (userInput === correctPassword) {
     overlay.classList.add("fadeOut");
