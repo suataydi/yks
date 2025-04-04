@@ -45,15 +45,17 @@
     }
     .banner {
       background: linear-gradient(135deg, #ff6f61, #e65a50);
-      padding: 5px 10px;  /* padding değeri azaltıldı */
+      padding: 5px 10px;  /* padding azaltıldı */
       text-align: center;
       font-size: 1rem;  /* font boyutu küçültüldü */
       color: white;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
       border-bottom: 1px solid #ff6f61;
       border-radius: 0 0 6px 6px;
-      margin: 0 10px 10px;
+      margin: 0 10px 5px;  /* margin azaltıldı */
       animation: fadeIn 1s ease;
+      max-height: 60px; /* Yüksekliği sınırlamak için max-height eklendi */
+      overflow: hidden; /* İçeriğin taşmasını engellemek için */
     }
 
     @keyframes fadeIn {
