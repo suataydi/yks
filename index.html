@@ -1,4 +1,6 @@
-<html lang="tr"><head>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Evren Haritası</title>
@@ -11,6 +13,7 @@
       width: 100%; height: 100%;
       background: url('harita.png') center center no-repeat;
       background-size: contain;
+      background-color: #111; /* Görünmezlik sorunlarına karşı koyu arka plan */
     }
 
     svg {
@@ -37,22 +40,23 @@
 </head>
 <body>
   <div class="map-container">
-    <svg viewBox="0 0 1169 768" preserveAspectRatio="xMidYMid meet">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         viewBox="0 0 1169 768" preserveAspectRatio="xMidYMid meet">
       <defs>
-        <filter id="shadow"><feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#000" flood-opacity="0.5"></feDropShadow></filter>
+        <filter id="shadow"><feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/></filter>
       </defs>
       <!-- 10 şehir işaretleri -->
-      <a xlink:href="aetherion.html"><circle class="region" cx="310" cy="110" r="13" filter="url(#shadow)"></circle></a>
-      <a xlink:href="frostheim.html"><circle class="region" cx="670" cy="150" r="13" filter="url(#shadow)"></circle></a>
-      <a xlink:href="skyridge.html"><circle class="region" cx="940" cy="110" r="13" filter="url(#shadow)"></circle></a>
-      <a xlink:href="verdantia.html"><circle class="region" cx="510" cy="350" r="13" filter="url(#shadow)"></circle></a>
-      <a xlink:href="mooneall.html"><circle class="region" cx="800" cy="390" r="13" filter="url(#shadow)"></circle></a>
-      <a xlink:href="solaris.html"><circle class="region" cx="880" cy="570" r="13" filter="url(#shadow)"></circle></a>
-      <a xlink:href="thalassor.html"><circle class="region" cx="550" cy="600" r="13" filter="url(#shadow)"></circle></a>
-      <a xlink:href="ignisforge.html"><circle class="region" cx="230" cy="450" r="13" filter="url(#shadow)"></circle></a>
-      <a xlink:href="cindervale.html"><circle class="region" cx="220" cy="530" r="13" filter="url(#shadow)"></circle></a>
-      <a xlink:href="noxshad.html"><circle class="region" cx="310" cy="620" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="aetherion.html"><circle class="region" cx="310" cy="110" r="13" filter="url(#shadow)"/></a>
+      <a xlink:href="frostheim.html"><circle class="region" cx="670" cy="150" r="13" filter="url(#shadow)"/></a>
+      <a xlink:href="skyridge.html"><circle class="region" cx="940" cy="110" r="13" filter="url(#shadow)"/></a>
+      <a xlink:href="verdantia.html"><circle class="region" cx="510" cy="350" r="13" filter="url(#shadow)"/></a>
+      <a xlink:href="mooneall.html"><circle class="region" cx="800" cy="390" r="13" filter="url(#shadow)"/></a>
+      <a xlink:href="solaris.html"><circle class="region" cx="880" cy="570" r="13" filter="url(#shadow)"/></a>
+      <a xlink:href="thalassor.html"><circle class="region" cx="550" cy="600" r="13" filter="url(#shadow)"/></a>
+      <a xlink:href="ignisforge.html"><circle class="region" cx="230" cy="450" r="13" filter="url(#shadow)"/></a>
+      <a xlink:href="cindervale.html"><circle class="region" cx="220" cy="530" r="13" filter="url(#shadow)"/></a>
+      <a xlink:href="noxshad.html"><circle class="region" cx="310" cy="620" r="13" filter="url(#shadow)"/></a>
     </svg>
   </div>
-
-</body></html>
+</body>
+</html>
