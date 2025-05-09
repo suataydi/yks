@@ -21,13 +21,10 @@
       height: 512px;
       background-image: url('images/verdantia.png');
       background-size: cover;
-      background-position: center;
+      background-position: center 50%;
       display: flex;
       justify-content: center;
-      align-items: flex-end; /* Metni alt kısmına kaydır */
-      text-align: center;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      align-items: flex-end;
       overflow: hidden;
     }
 
@@ -38,15 +35,35 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 50%; /* Geçiş yüksekliği */
+      height: 50%;
       background: linear-gradient(transparent, rgba(0,0,0,0.8));
       pointer-events: none;
     }
 
+    /* Başlık stili ve pozisyonlandırma */
     .header h1 {
+      position: fixed;             /* Sayfa kaydırılsa bile sabit */
+      top: 20px;                   /* Üstten boşluk */
+      left: 50%;                   /* Yatayda ortala */
+      transform: translateX(-50%);
+      margin: 0;
       font-size: 4rem;
-      margin: 0 0 20px; /* Alt boşluk ekle */
-      z-index: 1;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      z-index: 999;                /* Her zaman üstte */
+      /* Gradient renk efekti */
+      background: linear-gradient(90deg, #ffcc00, #ffffff, #ffcc00);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 5s ease infinite;
+    }
+
+    /* Gradient animasyonu */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     /* İçerik bölümü */
@@ -158,6 +175,16 @@
       <p>Verdantia, doğanın kalbinde yer alan mistik bir dünyadır. Burada, eski uygarlıkların izleri ve doğa ile iç içe geçmiş yaşamlar bulunmaktadır. Bölgenin tarihi, kültürü ve efsaneleri hakkında daha fazla bilgi için aşağıdaki bağlantıları ziyaret edebilirsiniz.</p>
     </div>
   </div>
+
+  <!-- Parallax efekt için JavaScript -->
+  <script>
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.pageYOffset;
+      // Arka planı hafif yukarı kaydır
+      header.style.backgroundPosition = `center ${50 - scrollY * 0.1}%`;
+    });
+  </script>
 
 </body>
 </html>
