@@ -1,293 +1,58 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <link rel="icon" href="s.png" type="image/png">
+<html lang="tr"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comics - Sugut</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <title>Evren Haritası</title>
   <style>
-    body {
-      background: #121212;
-      font-family: 'Orbitron', sans-serif;
-      margin: 0;
-      padding: 0;
-      color: white;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: rgba(0, 0, 0, 0.9);
-    }
-    .logo h1 {
-      margin: 0;
-      font-size: 2rem;
-      color: #ff6f61;
-    }
-    .search-bar {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background-color: #000; }
+
+    .map-container {
       position: relative;
-    }
-    .search-bar input {
-      padding: 8px 15px;
-      font-size: 1rem;
-      border-radius: 20px;
-      border: none;
-      outline: none;
-      width: 250px;
-      transition: width 0.3s;
-    }
-    .search-bar input:focus {
-      width: 300px;
-      box-shadow: 0 0 10px #ff6f61;
-    }
-    .banner {
-      background: linear-gradient(135deg, #ff6f61, #e65a50);
-      padding: 5px 10px;  /* padding azaltıldı */
-      text-align: center;
-      font-size: 1rem;  /* font boyutu küçültüldü */
-      color: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-      border-bottom: 1px solid #ff6f61;
-      border-radius: 0 0 6px 6px;
-      margin: 0 10px 5px;  /* margin azaltıldı */
-      animation: fadeIn 1s ease;
-      max-height: 60px; /* Yüksekliği sınırlamak için max-height eklendi */
-      overflow: hidden; /* İçeriğin taşmasını engellemek için */
+      width: 100%; height: 100%;
+      background: url('harita.png') center center no-repeat;
+      background-size: contain;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    svg {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
     }
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 15px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      width: 200px;
-      height: 400px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+
+    circle.region {
+      pointer-events: all;
+      fill: rgba(245, 227, 184, 0.7);
+      stroke: #5b4428;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+      transition: r 0.2s, fill 0.2s;
       cursor: pointer;
     }
-    .card:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px #ff6f61;
-    }
-    .img-container {
-      width: 200px;
-      height: 450px;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-    .img-container img {
-      width: 100%;
-      height: 100%;
-      transition: transform 0.3s;
-    }
-    .card:hover .img-container img {
-      transform: scale(1.05);
-    }
-    .summary {
-      padding: 10px;
-      font-size: 1rem;
-      background: rgba(0, 0, 0, 0.85);
-      color: #f0f0f0;
-      text-align: center;
-      width: 100%;
-      flex-grow: 1;
-    }
-    .hidden {
-      display: none !important;
-    }
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: rgba(0, 0, 0, 0.9);
-      margin-top: 15px;
-    }
-    mark {
-      background: yellow;
-      color: black;
+
+    circle.region:hover {
+      fill: rgba(245, 227, 184, 1);
+      r: 20;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <h1>SUGUT</h1>
-    </div>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Ara...">
-    </div>
-  </header>
-
-  <div class="banner">
-    En sevdiğiniz comicsleri keşfedin!
+  <div class="map-container">
+    <svg viewBox="0 0 1169 768" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <filter id="shadow"><feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#000" flood-opacity="0.5"></feDropShadow></filter>
+      </defs>
+      <!-- 10 şehir işaretleri -->
+      <a xlink:href="aetherion.html"><circle class="region" cx="310" cy="110" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="frostheim.html"><circle class="region" cx="670" cy="150" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="skyridge.html"><circle class="region" cx="940" cy="110" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="verdantia.html"><circle class="region" cx="510" cy="350" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="mooneall.html"><circle class="region" cx="800" cy="390" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="solaris.html"><circle class="region" cx="880" cy="570" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="thalassor.html"><circle class="region" cx="550" cy="600" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="ignisforge.html"><circle class="region" cx="230" cy="450" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="cindervale.html"><circle class="region" cx="220" cy="530" r="13" filter="url(#shadow)"></circle></a>
+      <a xlink:href="noxshad.html"><circle class="region" cx="310" cy="620" r="13" filter="url(#shadow)"></circle></a>
+    </svg>
   </div>
 
-  <main>
-    <section class="card-container">
-      <div class="card hidden" onclick="window.location.href='spider-verse2.html';">
-        <div class="img-container">
-          <img src="spider-verse2/01.webp" alt="spider-verse">
-        </div>
-        <div class="summary">⚡SPIDER VERSE 2</div>
-      </div>
-      <div class="card hidden" onclick="window.location.href='spider-verse.html';">
-        <div class="img-container">
-          <img src="spider-verse/01.webp" alt="spider-verse">
-        </div>
-        <div class="summary">⚡SPIDER VERSE</div>
-      </div>
-      <div class="card hidden" onclick="window.location.href='doom_2099.html';">
-        <div class="img-container">
-          <img src="doom_2099/doom2099-01.webp" alt="doom_2099">
-        </div>
-        <div class="summary">⚡DOOM 2099</div>
-      </div>
-      <div class="card hidden" onclick="window.location.href='PulseForge.html';">
-        <div class="img-container">
-          <img src="arka_plan_PulseForge.jpg" alt="PulseForge">
-        </div>
-        <div class="summary">⚡ John Parker, kinetik enerjiyi manipüle edebilen genç bir kahramandır. Güçlerini kontrol etmeyi öğrenirken büyük bir tehditle karşı karşıya kalır.</div>
-      </div>
-      <!-- Daha fazla kart buraya aynı şekilde eklenebilir -->
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 SUGUT
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const cards = document.querySelectorAll(".card");
-      const searchInput = document.getElementById("searchInput");
-      const cardContainer = document.querySelector(".card-container");
-
-      cards.forEach(card => card.classList.add("hidden"));
-      showInitialCards();
-
-      if (cards.length > 14) {
-        const btn = document.createElement("button");
-        btn.textContent = "Daha fazla göster";
-        btn.classList.add("load-more-btn");
-        btn.style.cssText = `
-          margin: 20px auto;
-          display: block;
-          background: #ff6f61;
-          color: white;
-          border: none;
-          padding: 10px 20px;
-          font-size: 1rem;
-          border-radius: 20px;
-          cursor: pointer;
-        `;
-        btn.addEventListener("click", () => {
-          cards.forEach(card => card.classList.remove("hidden"));
-          btn.remove();
-        });
-        cardContainer.after(btn);
-      }
-
-      searchInput.addEventListener("input", searchContent);
-
-      const summaries = document.querySelectorAll(".summary");
-      summaries.forEach(summary => summary.dataset.original = summary.innerText);
-
-      function showInitialCards() {
-        cards.forEach((card, index) => {
-          if (index < 14) {
-            card.classList.remove("hidden");
-          }
-        });
-      }
-
-      function searchContent() {
-        const searchTerm = searchInput.value.trim();
-        const regex = new RegExp(searchTerm, "i");
-
-        let matchCount = 0;
-        cards.forEach(function (card) {
-          const summaryElem = card.querySelector(".summary");
-          const originalText = summaryElem.dataset.original;
-
-          if (searchTerm === "") {
-            summaryElem.innerHTML = originalText;
-            card.classList.add("hidden");
-            if (matchCount < 14) {
-              card.classList.remove("hidden");
-              matchCount++;
-            }
-          } else if (regex.test(originalText)) {
-            card.classList.remove("hidden");
-            summaryElem.innerHTML = originalText.replace(regex, function (match) {
-              return "<mark>" + match + "</mark>";
-            });
-          } else {
-            card.classList.add("hidden");
-            summaryElem.innerHTML = originalText;
-          }
-        });
-      }
-    });
-  </script>
-
-  <!-- Geliştirici araçlarını engelleme scriptleri -->
-<script>
-  // Mobil cihazlarda bu scripti devre dışı bırak
-  if (window.innerWidth > 800) { // Masaüstü cihazlarda çalışması için
-    document.addEventListener("contextmenu", function (event) {
-      event.preventDefault();
-    });
-    document.addEventListener("keydown", function (event) {
-      if (event.ctrlKey && (event.key === "U" || event.key === "S" || event.key === "I" || event.key === "J" || event.key === "C" || event.key === "K")) {
-        event.preventDefault();
-      }
-    });
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "F12") {
-        event.preventDefault();
-      }
-    });
-    (function() {
-      var devtools = false;
-      var element = new Image();
-      Object.defineProperty(element, 'id', {
-        get: function() {
-          devtools = true;
-          alert("Geliştirici araçlarını kapatın!");
-          window.location.href = "about:blank";
-        }
-      });
-      console.log('%c', element);
-    })();
-    if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-      document.body.innerHTML = "<h1>Geliştirici araçları kapatılmadan bu sayfa görüntülenemez!</h1>";
-      setTimeout(function(){ window.location.href = "about:blank"; }, 2000);
-    }
-    setInterval(function() {
-      if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-        alert("Geliştirici araçları kapatılmadan devam edemezsiniz!");
-        window.location.href = "about:blank";
-      }
-    }, 1000);
-  }
-</script>
-</body>
-</html>
+</body></html>
